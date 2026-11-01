@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AstroLens is an astrology-inspired reflection journal with mood analytics and private local storage.">
+  <meta name="theme-color" content="#111827">
+  <title>AstroLens — Reflect with intention</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="AstroLens home"><span class="brand-mark">✦</span><span>AstroLens</span></a>
+      <p class="side-label">WORKSPACE</p>
+      <nav>
+        <a class="nav-link active" href="#overview"><span>◈</span> Overview</a>
+        <a class="nav-link" href="#journal"><span>▤</span> Reflection journal</a>
+        <a class="nav-link" href="#insights"><span>⌁</span> Patterns & insights</a>
+        <a class="nav-link" href="#profile"><span>◎</span> Birth profile</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="privacy-note"><span class="privacy-icon">🔒</span><div><strong>Your data stays yours</strong><small>Saved only in this browser.</small></div></div>
+        <small class="version">ASTROLENS · v1.0.0</small>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow" id="today-label">YOUR PERSONAL SPACE</p><h1 id="greeting">A moment to reflect.</h1></div>
+        <button class="button button-ghost" id="export-button" type="button">↓ Export data</button>
+      </header>
+
+      <section class="hero-card" id="overview">
+        <div class="hero-copy">
+          <span class="pill">TODAY'S REFLECTION</span>
+          <h2 id="daily-title">Make room for a new perspective.</h2>
+          <p id="daily-prompt">A useful insight starts with a thoughtful question. Take a breath and check in with yourself.</p>
+          <a class="text-link" href="#journal">Write today's reflection <span>→</span></a>
+        </div>
+        <div class="orbit-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="planet"></div><span class="star star-a">✦</span><span class="star star-b">✧</span><span class="star star-c">·</span></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Your journal statistics">
+        <article class="stat-card"><span class="stat-icon lavender">✎</span><p class="stat-label">Journal entries</p><strong id="entry-count">0</strong><small>Moments captured</small></article>
+        <article class="stat-card"><span class="stat-icon peach">♡</span><p class="stat-label">Most common mood</p><strong class="stat-word" id="top-mood">—</strong><small>Based on your entries</small></article>
+        <article class="stat-card"><span class="stat-icon mint">◷</span><p class="stat-label">Current streak</p><strong id="streak-count">0 days</strong><small>Consecutive journal days</small></article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel journal-panel" id="journal">
+          <div class="panel-heading"><div><p class="eyebrow">CHECK IN WITH YOURSELF</p><h2>Reflection journal</h2></div><span class="panel-symbol">✧</span></div>
+          <form id="journal-form">
+            <label for="mood">How are you feeling today?</label>
+            <div class="mood-options" role="group" aria-label="Choose your mood">
+              <button type="button" class="mood-option" data-mood="Calm" aria-pressed="false"><span>☁</span>Calm</button>
+              <button type="button" class="mood-option" data-mood="Happy" aria-pressed="false"><span>☀</span>Happy</button>
+              <button type="button" class="mood-option" data-mood="Focused" aria-pressed="false"><span>◎</span>Focused</button>
+              <button type="button" class="mood-option" data-mood="Anxious" aria-pressed="false"><span>〰</span>Anxious</button>
+              <button type="button" class="mood-option" data-mood="Low" aria-pressed="false"><span>☂</span>Low</button>
+            </div>
+            <label for="reflection">What is on your mind?</label>
+            <textarea id="reflection" rows="4" maxlength="1200" placeholder="Write freely. What happened today? What did you learn? What do you need?"></textarea>
+            <div class="form-footer"><small><span id="char-count">0</span>/1200 characters</small><button class="button button-primary" type="submit">Save reflection <span>→</span></button></div>
+            <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+          </form>
+          <div class="recent-heading"><h3>Recent reflections</h3><span id="recent-count">0 saved</span></div>
+          <div id="recent-entries" class="recent-entries"><p class="empty-state">Your reflections will appear here. Start with one small thought.</p></div>
+        </section>
+
+        <section class="panel insights-panel" id="insights">
+          <div class="panel-heading"><div><p class="eyebrow">NOTICE YOUR RHYTHMS</p><h2>Mood patterns</h2></div><span class="panel-symbol">⌁</span></div>
+          <p class="muted">A simple view of the moods you have recorded.</p>
+          <div id="mood-chart" class="mood-chart"><p class="empty-state">Add a few journal entries to see your mood patterns.</p></div>
+          <div class="insight-tip"><span>✦</span><div><strong>A gentle reminder</strong><p>Patterns are information, not labels. One difficult day does not define your story.</p></div></div>
+          <div class="panel-divider"></div>
+          <div class="panel-heading compact"><div><p class="eyebrow">YOUR ASTROLOGY SNAPSHOT</p><h2>Sun sign</h2></div></div>
+          <div class="zodiac-summary"><div class="zodiac-glyph" id="zodiac-glyph">✧</div><div><strong id="zodiac-name">Not set yet</strong><p id="zodiac-description">Add your birthday to see your Sun sign.</p></div></div>
+          <a href="#profile" class="text-link">Edit birth profile <span>→</span></a>
+        </section>
+      </div>
+
+      <section class="panel profile-panel" id="profile">
+        <div class="panel-heading"><div><p class="eyebrow">A LITTLE ABOUT YOU</p><h2>Birth profile</h2></div><span class="panel-symbol">◎</span></div>
+        <form id="profile-form" class="profile-form">
+          <div class="field"><label for="display-name">Display name</label><input id="display-name" type="text" maxlength="40" placeholder="What should we call you?"></div>
+          <div class="field"><label for="birth-date">Date of birth</label><input id="birth-date" type="date" required></div>
+          <div class="field"><label for="birth-time">Birth time <span class="optional">(optional)</span></label><input id="birth-time" type="time"></div>
+          <div class="field"><label for="birth-place">Birthplace <span class="optional">(optional)</span></label><input id="birth-place" type="text" maxlength="80" placeholder="City, country"></div>
+          <div class="profile-actions"><p class="muted">Your profile is stored locally in this browser.</p><button class="button button-primary" type="submit">Save profile</button></div>
+        </form>
+      </section>
+      <footer><span>AstroLens</span><span>Astrology-inspired reflection · Not scientific or predictive advice</span></footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
